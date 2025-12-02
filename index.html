@@ -1,328 +1,831 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Klaversof Techsolutions - Digital Solutions for Tomorrow</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
+:root {
+    --primary: #eab308;
+    --secondary: #ca8a04;
+    --accent: #fbbf24;
+    --cyan: #fcd34d;
+    --orange: #f59e0b;
+    --green: #fdba74;
+    --purple: #fde68a;
+    --background: #0c0a09;
+    --surface: #1c1917;
+    --text: #fafaf9;
+    --text-muted: #d6d3d1;
+}
+        body {
+            font-family: 'Inter', 'Segoe UI', sans-serif;
+            background: var(--background);
+            color: var(--text);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
 
+        /* Animated Background */
+    .bg-animation {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    background: linear-gradient(135deg, #0a0e27 0%, #1a1530 33%, #0f1e2e 66%, #0a1628 100%);
+}
 
+        .bg-animation::before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 20% 50%, rgba(102, 126, 234, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(250, 112, 154, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 40% 20%, rgba(74, 172, 254, 0.1) 0%, transparent 50%);
+            animation: pulse 15s ease-in-out infinite;
+        }
 
-  <!-- Global site tag (gtag.js) - Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-171625134-1"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'UA-171625134-1');
-    </script>
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
 
-  <meta charset="utf-8">
-  <title>Klaversof Techsolutions</title>
-  <meta content="width=device-width, initial-scale=1.0" name="viewport">
-  <meta content="" name="keywords">
-  <meta content="" name="description">
+        .particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
 
-  <!-- Favicons -->
-  <link href="img/favicon.ico" rel="icon">
-  <!--<link href="img/apple-touch-icon.png" rel="apple-touch-icon">-->
-  
+        .particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: var(--primary);
+            border-radius: 50%;
+            opacity: 0.4;
+            animation: float-particle 20s linear infinite;
+        }
 
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,700,700i|Montserrat:300,400,500,700" rel="stylesheet">
+        @keyframes float-particle {
+            0% {
+                transform: translateY(100vh) translateX(0);
+            }
+            100% {
+                transform: translateY(-100vh) translateX(100px);
+            }
+        }
 
-  <!-- Bootstrap CSS File -->
-  <link href="lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(10, 14, 39, 0.95);
+            backdrop-filter: blur(20px);
+            padding: 1.2rem 5%;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(102, 126, 234, 0.2);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
+        }
 
-  <!-- Libraries CSS Files -->
-  <link href="lib/font-awesome/css/font-awesome.min.css" rel="stylesheet">
-  <link href="lib/animate/animate.min.css" rel="stylesheet">
-  <link href="lib/ionicons/css/ionicons.min.css" rel="stylesheet">
-  <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
-  <link href="lib/lightbox/css/lightbox.min.css" rel="stylesheet">
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
 
-  <!-- Main Stylesheet File -->
-  <link href="css/style.css" rel="stylesheet">
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
 
-  <!-- =======================================================
-    Theme Name: NewBiz
-    Theme URL: https://bootstrapmade.com/newbiz-bootstrap-business-template/
-    Author: BootstrapMade.com
-    License: https://bootstrapmade.com/license/
-  ======================================================= -->
+        .company-logo {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: white;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+            animation: logo-glow 3s ease-in-out infinite;
+        }
+
+        @keyframes logo-glow {
+            0%, 100% { box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4); }
+            50% { box-shadow: 0 4px 25px rgba(102, 126, 234, 0.7); }
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text);
+            text-decoration: none;
+            transition: all 0.3s;
+            position: relative;
+            font-weight: 500;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+            transition: width 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 8rem 5% 4rem;
+            position: relative;
+        }
+
+        .hero-content {
+            max-width: 1400px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 5rem;
+            align-items: center;
+        }
+
+        .hero-text h1 {
+            font-size: 4.5rem;
+            font-weight: 900;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(135deg, #ffffff, var(--accent), var(--cyan));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: gradient-shift 5s ease infinite;
+            background-size: 200% 200%;
+        }
+
+        @keyframes gradient-shift {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        .hero-text p {
+            font-size: 1.3rem;
+            color: var(--text-muted);
+            margin-bottom: 2.5rem;
+            line-height: 1.8;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1.5rem;
+        }
+
+        .btn {
+            padding: 1.2rem 2.5rem;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            text-decoration: none;
+            display: inline-block;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.3);
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+
+        .btn:hover::before {
+            width: 300px;
+            height: 300px;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.4);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(102, 126, 234, 0.6);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--text);
+            border: 2px solid var(--primary);
+        }
+
+        .btn-secondary:hover {
+            background: var(--primary);
+            color: white;
+            transform: translateY(-3px);
+        }
+
+        .hero-visual {
+            position: relative;
+        }
+
+        .floating-card {
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.15), rgba(250, 112, 154, 0.15));
+            border: 2px solid rgba(102, 126, 234, 0.3);
+            border-radius: 30px;
+            padding: 3rem;
+            backdrop-filter: blur(10px);
+            animation: float 6s ease-in-out infinite;
+            box-shadow: 0 20px 60px rgba(102, 126, 234, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .floating-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+            transform: rotate(45deg);
+            animation: shine 3s infinite;
+        }
+
+        @keyframes shine {
+            0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+            100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(2deg); }
+        }
+
+        .floating-card h3 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: white;
+        }
+
+        /* About Section */
+        .about {
+            padding: 8rem 5%;
+            background: linear-gradient(180deg, rgba(26, 31, 58, 0.5) 0%, transparent 100%);
+        }
+
+        .section-header {
+            text-align: center;
+            max-width: 900px;
+            margin: 0 auto 5rem;
+        }
+
+        .section-header h2 {
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(135deg, var(--primary), var(--accent), var(--cyan));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-weight: 800;
+        }
+
+        .section-header p {
+            font-size: 1.3rem;
+            color: var(--text-muted);
+            line-height: 1.8;
+        }
+
+        /* Services Section */
+        .services {
+            padding: 8rem 5%;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .product-showcase {
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.1), rgba(250, 112, 154, 0.1));
+            border: 2px solid rgba(102, 126, 234, 0.3);
+            border-radius: 40px;
+            padding: 4rem;
+            margin-top: 4rem;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        }
+
+        .product-showcase::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary), var(--accent), var(--cyan), var(--primary));
+            background-size: 200% 100%;
+            animation: gradient-flow 3s linear infinite;
+        }
+
+        @keyframes gradient-flow {
+            0% { background-position: 0% 0%; }
+            100% { background-position: 200% 0%; }
+        }
+
+        .product-header {
+            display: flex;
+            align-items: center;
+            gap: 2.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .product-logo {
+            width: 120px;
+            height: 120px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            border-radius: 25px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+            flex-shrink: 0;
+            box-shadow: 0 10px 40px rgba(102, 126, 234, 0.5);
+            animation: icon-pulse 3s ease-in-out infinite;
+        }
+
+        @keyframes icon-pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        .product-header-text h3 {
+            font-size: 3rem;
+            color: white;
+            margin-bottom: 0.5rem;
+        }
+
+        .product-tagline {
+            font-size: 1.3rem;
+            color: var(--accent);
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .product-description {
+            font-size: 1.2rem;
+            color: var(--text-muted);
+            line-height: 1.8;
+        }
+
+        .know-more-section {
+            background: rgba(102, 126, 234, 0.1);
+            border: 2px solid var(--primary);
+            border-radius: 20px;
+            padding: 2rem;
+            margin: 3rem 0;
+            text-align: center;
+            transition: all 0.3s;
+        }
+
+        .know-more-section:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(102, 126, 234, 0.3);
+        }
+
+        .know-more-section h4 {
+            font-size: 1.5rem;
+            color: white;
+            margin-bottom: 1rem;
+        }
+
+        .know-more-section p {
+            color: var(--text-muted);
+            margin-bottom: 1.5rem;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .feature-card {
+            background: rgba(26, 31, 58, 0.6);
+            border: 2px solid rgba(102, 126, 234, 0.2);
+            border-radius: 20px;
+            padding: 2.5rem;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.1), rgba(250, 112, 154, 0.1));
+            opacity: 0;
+            transition: opacity 0.4s;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--accent);
+            box-shadow: 0 20px 50px rgba(102, 126, 234, 0.4);
+        }
+
+        .feature-card:hover::before {
+            opacity: 1;
+        }
+
+        .feature-card h4 {
+            color: var(--accent);
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .feature-card p {
+            color: var(--text-muted);
+            line-height: 1.8;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Contact Section */
+        .contact {
+            padding: 8rem 5%;
+            background: linear-gradient(180deg, transparent 0%, rgba(26, 31, 58, 0.5) 100%);
+        }
+
+        .contact-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 5rem;
+        }
+
+        .contact-info h3 {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .contact-item {
+            margin-bottom: 2.5rem;
+            padding: 1.5rem;
+            background: rgba(26, 31, 58, 0.5);
+            border-radius: 15px;
+            border: 1px solid rgba(102, 126, 234, 0.2);
+            transition: all 0.3s;
+        }
+
+        .contact-item:hover {
+            border-color: var(--primary);
+            transform: translateX(10px);
+        }
+
+        .contact-item strong {
+            color: var(--accent);
+            display: block;
+            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+        }
+
+        .contact-item p {
+            color: var(--text-muted);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .social-links a {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-decoration: none;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            font-size: 1.8rem;
+            box-shadow: 0 5px 20px rgba(102, 126, 234, 0.3);
+        }
+
+        .social-links a:hover {
+            transform: translateY(-5px) rotate(5deg);
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.6);
+        }
+
+        /* Footer */
+        footer {
+            background: rgba(10, 14, 39, 0.95);
+            padding: 3rem 5%;
+            text-align: center;
+            border-top: 2px solid rgba(102, 126, 234, 0.2);
+        }
+
+        footer p {
+            color: var(--text-muted);
+            font-size: 1.1rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero-content,
+            .contact-container {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+
+            .hero-text h1 {
+                font-size: 2.5rem;
+            }
+
+            .section-header h2 {
+                font-size: 2.5rem;
+            }
+
+            .nav-links {
+                gap: 1rem;
+                font-size: 0.9rem;
+            }
+
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .product-showcase {
+                padding: 2rem;
+            }
+
+            .product-header {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+
+        /* Scroll animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease-out;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
 </head>
-
 <body>
-
-  <!--==========================
-  Header
-  ============================-->
-  <header id="header" class="fixed-top">
-    <div class="container">
-
-      <div class="logo float-left">
-        <!-- Uncomment below if you prefer to use an image logo -->
-        <!-- <h1 class="text-light"><a href="#header"><span>NewBiz</span></a></h1> -->
-        <a href="#intro" class="scrollto"><img src="img/Klaversof Techsolutions.png"  alt="" class="img-fluid"></a>
-      </div>
-
-      <nav class="main-nav float-right d-none d-lg-block">
-        <ul>
-          <li class="active"><a href="#intro">Home</a></li>
-          <li><a href="#about">About Us</a></li>
-          <li><a href="#services">Services</a></li>
-          <li><a href="#contact">Contact Us</a></li>
-        </ul>
-      </nav><!-- .main-nav -->
-      
+    <div class="bg-animation"></div>
+    <div class="particles">
+        <div class="particle" style="left: 10%; animation-delay: 0s;"></div>
+        <div class="particle" style="left: 30%; animation-delay: 2s;"></div>
+        <div class="particle" style="left: 50%; animation-delay: 4s;"></div>
+        <div class="particle" style="left: 70%; animation-delay: 1s;"></div>
+        <div class="particle" style="left: 90%; animation-delay: 3s;"></div>
     </div>
-  </header><!-- #header -->
 
-  <!--==========================
-    Intro Section
-  ============================-->
-  <section id="intro" class="clearfix">
-    <div class="container">
-
-      <div class="intro-img">
-        <img src="img/intro-img.svg" alt="" class="img-fluid">
-      </div>
-
-      <div class="intro-info">
-        <h2>We provide<br>solutions<br>for your business!</h2>
-        <div>
-          <a href="#about" class="btn-get-started scrollto">Get Started</a>
-          <a href="#services" class="btn-services scrollto">Our Services</a>
-        </div>
-      </div>
-
-    </div>
-  </section><!-- #intro -->
-
-  <main id="main">
-
-    <!--==========================
-      About Us Section
-    ============================-->
-    <section id="about">
-      <div class="container">
-
-        <header class="section-header">
-          <h3>About Us</h3>
-          <p>
-            We, at Klaversof Techsolutions, strive to make world a better place by solving tomorrow's problems, today.</p>
-        </header>
-
-      </div>
-    </section><!-- #about -->
-
-    <!--==========================
-      Services Section
-    ============================-->
-    <section id="services" class="section-bg">
-        <div class="container">
-
-            <header class="section-header">
-            <h3>Services</h3>
-            <p>
-              We, at Klaversof Techsolutions, provide IT services such as software development, software maintenance and support, product development, and other related services to domestic and overseas clients.          </p>
-            </p>
-            </header>
-
-            <!-- <div class="row about-extra">
-              <div class="col-lg-6 wow fadeInUp order-1 order-lg-2" align="center">
-                <img src="img/Learnzie.png" class="img-fluid" alt="" width="300" height="300" >
-              </div>
-    
-              <div class="col-lg-6 wow fadeInUp pt-4 pt-lg-0 order-2 order-lg-1">
-                <h4 align="right"><a target="_blank" href="/learne.html"><b>Learn-E</b></a></h4>
-                <p align="right">
-                  Learn-E provides a platform to connect students seeking tution classes to mentors to help them excel in academics and achieve their goals.
-                </p>
-                <p align="right">
-                  The mentors are from various top colleges in India who understand the process of learning very well and have proven themselves in various competitive exams. Being students of prestigious colleges like IITs, NITs, BITS, AIIMS, LSR, Hindu College etc., they know what it takes to get there, mistakes to avoid and can carve the best possible path for students to help them achieve their dream. 
-                </p>
-                <p align="right">
-                  
-                </p>
-
-              </div>
-              
-            </div> 
-            <br>
-            <br> 
-            <br> 
-            <br> -->
-
-            <div class="row about-extra">
-                <div class="col-lg-6 wow fadeInUp" align="center">
-                  <img src="img/bluebg.png" class="img-fluid" alt="" width="300" height="300" >
-                </div>
-                <div class="col-lg-6 wow fadeInUp pt-5 pt-lg-0">
-                  <h4><b>GalgotiaHub</b></h4>
-                  <p>
-                  Revolutionize your college life with GalgotiaHub: Connect, study, and socialize effortlessly!                  </p>
-                  <p>
-                 Welcome to GalgotiaHub, the ultimate college companion designed to simplify and enhance your college
-              experience! With
-              GalgotiaHub, effortlessly chat and connect with classmates without needing phone numbers. Engage in
-              enriching
-              discussions and find answers to your academic and campus-related questions within your college community.
-              Access all
-              your college's study resources in one centralized location, ensuring you never miss a note or handout
-              again. Elevate
-              your social life by connecting with friends on Instagram, Snapchat, and LinkedIn. GalgotiaHub is not just
-              for students;
-              faculty members can also use the app to share important information, reach out to students, and expand
-              their
-              professional network.
-
-              Why choose GalgotiaHub? Enjoy seamless connectivity with classmates and faculty, centralized access to
-              study materials,
-              and enhanced social networking features, all within a user-friendly interface. Join the GalgotiaHub
-              community today and
-              revolutionize your college experience. Stay connected, stay informed, and stay ahead with GalgotiaHub.
-              Download now and
-              transform your college journey!                 </p>
-                </div>
-              </div>
-      
-
-              <br>
-              <br>
-              <br>
-              <br>
-
-<!--               <div class="row about-extra">
-                <div class="col-lg-6 wow fadeInUp order-1 order-lg-2" align="center">
-                  <img src="img/kollegekraze.png" class="img-fluid" alt="" width="300" height="300" >
-                </div>
-      
-                <div class="col-lg-6 wow fadeInUp pt-4 pt-lg-0 order-2 order-lg-1">
-                  <h4 align="right"><a target="_blank" href="https://play.google.com/store/apps/details?id=com.klaversof.kollegekraze&hl=en&gl=US"><b>KollegeKraze</b></a></h4>
-                  <p align="right">
-                    KollegeKraze is a free platform to find and meet new people in your college and a smart way of making friends. If you really like someone in your college but don’t know if they like you too, then KollegeKraze is here to help you!
-                    
-                  </p>
-                  
-                </div> -->
-                
-<!--               </div> -->
-              <br>
-              <br>
-
-
-        </div>
-
-
-
-      </div>
-    </section><!-- #services -->
-
-    
-
-  </main>
-
-  <!--==========================
-    Footer
-  ============================-->
-  <footer id="footer">
-    <div class="footer-top" id="contact">
-      <div class="container">
-        <div class="row">
-
-          <div class="col-lg-4 col-md-6 footer-info">
-            <h3>Klaversof Techsolutions</h3>
-            <p>We, at Klaversof Techsolutions, provide IT services such as software development, software maintenance and support, product development, and other related services to domestic and overseas clients.</p>
-          </div>
-
-          <div class="col-lg-2 col-md-6 footer-links">
-            <h4>Useful Links</h4>
-            <ul>
-              <li><a href="#intro">Home</a></li>
-              <li><a href="#about">About us</a></li>
-              <li><a href="#services">Services</a></li>
-              <li><a href="/tnc.html">Terms of service</a></li>
-			 <li><a href="/EduByte_privacy_policy.html">EduByte Privacy Policy</a></li>
-              <li><a href="/EduByte_child_safety.html">EduByte Child Safety Policy</a></li>
-	      <li><a href="/wengo_privacy_policy.html">Wengo Privacy Policy</a></li>
-              <li><a href="/wengo_child_safety.html">Wengo Child Safety Policy</a></li>
-              <!--<li><a href="#">Privacy policy</a></li>-->
+    <nav>
+        <div class="nav-container">
+            <div class="logo-container">
+               <div class="company-logo"><img src="img/Klaversof Techsolutions.png" style="width: 100%; height: 100%; object-fit: contain;"></div>
+                <div class="logo">Klaversof Techsolutions</div>
+            </div>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#contact">Contact</a></li>
             </ul>
-          </div>
+        </div>
+    </nav>
 
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <div class="hero-text">
+                <h1>We Provide Solutions for Your Business</h1>
+                <p>Solving tomorrow's problems, today. Expert IT services including software development, maintenance, and innovative product solutions that transform your digital presence.</p>
+                <div class="cta-buttons">
+                    <a href="#about" class="btn btn-primary">Get Started</a>
+                    <a href="#services" class="btn btn-secondary">Our Services</a>
+                </div>
+            </div>
+            <div class="hero-visual">
+                <div class="floating-card">
+                    <h3>🚀 Innovation Driven</h3>
+                    <p>Building the future of digital solutions with cutting-edge technology and creative problem-solving. We turn your vision into reality.</p>
+                </div>
+            </div>
+        </div>
+    </section>
 
+    <section class="about fade-in" id="about">
+        <div class="section-header">
+            <h2>About Us</h2>
+            <p>We, at Klaversof Techsolutions, strive to make the world a better place by solving tomorrow's problems, today. Our commitment to excellence drives us to deliver innovative solutions that empower businesses to thrive in the digital age.</p>
+        </div>
+    </section>
 
-          <div class="col-lg-2 col-md-6 footer-links">
-            <h4>Contact Us</h4>
-            <p>
-              <strong>Email</strong><br>klaversof@gmail.com<br>
-              <br>
-              <strong>Mobile</strong><br>+91 84482 32222<br>
-	      <br>
-              <strong>Address</strong><br>D - 40, Sector 108, Noida, Picncode - 201301, Uttar Pradesh, India<br>
-            </p>
+    <section class="services fade-in" id="services">
+        <div class="section-header">
+            <h2>Our Services</h2>
+            <p>We provide comprehensive IT services including software development, maintenance and support, product development, and related services to domestic and overseas clients.</p>
+        </div>
 
-            <div class="social-links">
-              <a target="_blank" href="https://twitter.com/klaversof/" class="twitter"><i class="fa fa-twitter"></i></a>
-              <a target="_blank" href="https://www.facebook.com/klaversof/" class="facebook"><i class="fa fa-facebook"></i></a>
-              <a target="_blank" href="https://www.instagram.com/klaversof/" class="instagram"><i class="fa fa-instagram"></i></a>
+        <div class="product-showcase">
+            <div class="product-header">
+<div class="product-logo" 
+     style="width:120px; height:120px; overflow:hidden; border-radius:20px; background:white;">
+    <img src="img/edubyte.png" style="width:100%; height:100%; object-fit:contain;">
+</div>
+
+                <div class="product-header-text">
+                    <h3>EduByte</h3>
+                    <p class="product-tagline">Your Digital Campus</p>
+                    <p class="product-description">The all-in-one platform for seamless campus communication, collaboration, and community. Experience the future of campus life.</p>
+                </div>
             </div>
 
-          </div>
+            <div class="know-more-section">
+                <h4>🌟 Want to Explore More?</h4>
+                <p>Discover the complete EduByte experience and learn how we're revolutionizing campus life</p>
+                <a href="https://edubyte.in/" target="_blank" class="btn btn-primary">Visit EduByte Website</a>
+            </div>
 
+            <div class="features-grid">
+                <div class="feature-card">
+                    <h4>📢 Smart Digital Notice Board</h4>
+                    <p>Stay informed with every important update — from academic schedules to event announcements. Instant access to official announcements, notifications for urgent updates, searchable past notices, and clean categorized displays.</p>
+                </div>
 
+                <div class="feature-card">
+                    <h4>👥 Interactive College Community</h4>
+                    <p>A vibrant social space built just for your campus. Share ideas, celebrate achievements, and connect through trending tags like #Placements, #Fest, and #Academics. Discover clubs and societies in a safe, college-exclusive environment.</p>
+                </div>
 
+                <div class="feature-card">
+                    <h4>💬 Smart College Chat</h4>
+                    <p>Seamless communication that keeps you connected with everyone on campus. 1-to-1 and group chats for classes, clubs, and societies. Built-in privacy features for secure and professional communication without exposing personal numbers.</p>
+                </div>
+
+                <div class="feature-card">
+                    <h4>📚 Resources Hub</h4>
+                    <p>Your all-in-one academic companion. Browse organized study materials — class notes, lab files, PYQs, and more. Smart filters help you find subjects and relevant files instantly. Request missing materials directly from peers or faculty.</p>
+                </div>
+            </div>
         </div>
-      </div>
-    </div>
+    </section>
 
+    <section class="contact fade-in" id="contact">
+        <div class="section-header">
+            <h2>Get In Touch</h2>
+            <p>Ready to transform your digital presence? Let's talk about your project and create something amazing together.</p>
+        </div>
 
-    <div class="container" align="center">
-      <br>
-			<p>Website visits</p>
-			<!-- hitwebcounter Code START -->
-			<a href="https://www.hitwebcounter.com" target="_blank">
-				<img src="https://hitwebcounter.com/counter/counter.php?page=7812301&style=0010&nbdigits=5&type=page&initCount=0" title="Free Counter" Alt="web counter"   border="0" />
-			</a>  
-			<br>
-		</div>
+        <div class="contact-container">
+            <div class="contact-info">
+                <h3>Contact Information</h3>
+                
+                <div class="contact-item">
+                    <strong>📧 Email</strong>
+                    <p>klaversof@gmail.com</p>
+                </div>
 
+                <div class="contact-item">
+                    <strong>📱 Mobile</strong>
+                    <p>+91 9560889999</p>
+                </div>
 
-    <div class="container">
-      <div class="copyright">
-        &copy; Copyright <strong>Klaversof Techsolutions</strong>. All Rights Reserved
-      </div>
-      <div class="credits">
-        <!--
-          All the links in the footer should remain intact.
-          You can delete the links only if you purchased the pro version.
-          Licensing information: https://bootstrapmade.com/license/
-          Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/buy/?theme=NewBiz
-        -->
+                <div class="contact-item">
+                    <strong>📍 Address</strong>
+                    <p>D - 40, Sector 108, Noida<br>Pincode - 201301<br>Uttar Pradesh, India</p>
+                </div>
 
-      </div>
-    </div>
-  </footer><!-- #footer -->
+                <div class="social-links">
+                    <a href="https://twitter.com/klaversof/" target="_blank" title="Twitter">𝕏</a>
+                    <a href="https://www.facebook.com/klaversof/" target="_blank" title="Facebook">f</a>
+                    <a href="https://www.instagram.com/klaversof/" target="_blank" title="Instagram">📷</a>
+                </div>
+            </div>
 
-  <a href="#" class="back-to-top"><i class="fa fa-chevron-up"></i></a>
-  <!-- Uncomment below i you want to use a preloader -->
-  <!-- <div id="preloader"></div> -->
+            <div class="contact-info">
+                <h3>We Serve</h3>
+                <p style="color: var(--text-muted); line-height: 1.8; font-size: 1.1rem;">
+                    We provide IT services such as software development, software maintenance and support, product development, and other related services to domestic and overseas clients. Our mission is to deliver innovative solutions that drive business growth and digital transformation. Partner with us to build the future.
+                </p>
+            </div>
+        </div>
+    </section>
 
-  <!-- JavaScript Libraries -->
-  <script src="lib/jquery/jquery.min.js"></script>
-  <script src="lib/jquery/jquery-migrate.min.js"></script>
-  <script src="lib/bootstrap/js/bootstrap.bundle.min.js"></script>
-  <script src="lib/easing/easing.min.js"></script>
-  <script src="lib/mobile-nav/mobile-nav.js"></script>
-  <script src="lib/wow/wow.min.js"></script>
-  <script src="lib/waypoints/waypoints.min.js"></script>
-  <script src="lib/counterup/counterup.min.js"></script>
-  <script src="lib/owlcarousel/owl.carousel.min.js"></script>
-  <script src="lib/isotope/isotope.pkgd.min.js"></script>
-  <script src="lib/lightbox/js/lightbox.min.js"></script>
-  <!-- Contact Form JavaScript File -->
-  <script src="contactform/contactform.js"></script>
+    <footer>
+        <p>&copy; 2024 Klaversof Techsolutions. All Rights Reserved | Crafted with 💜</p>
+    </footer>
 
-  <!-- Template Main Javascript File -->
-  <script src="js/main.js"></script>
+    <script>
+        // Fade-in animation on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
 
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
 </body>
 </html>
