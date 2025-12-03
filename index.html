@@ -114,6 +114,7 @@
             align-items: center;
             gap: 1rem;
         }
+        
 
         .company-logo {
             width: 50px;
@@ -448,6 +449,50 @@
             box-shadow: 0 15px 40px rgba(102, 126, 234, 0.3);
         }
 
+     /* Hamburger button (hidden on desktop) */
+.menu-toggle {
+    display: none;
+    font-size: 2rem;
+    background: none;
+    border: none;
+    color: var(--text);
+    cursor: pointer;
+}
+
+/* Mobile styles */
+@media (max-width: 768px) {
+    .nav-links {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background: rgba(10, 14, 39, 0.98);
+        flex-direction: column;
+        gap: 1.5rem;
+        padding: 1.5rem 0;
+        border-bottom: 1px solid rgba(102, 126, 234, 0.3);
+        display: none; /* hidden by default */
+
+        /* Added for perfect centering */
+        text-align: center;
+        align-items: center;
+    }
+
+    .nav-links.active {
+        display: flex;
+    }
+
+    .menu-toggle {
+        display: block;
+    }
+
+    .nav-container {
+        align-items: center;
+    }
+}
+
+
+
         .know-more-section h4 {
             font-size: 1.5rem;
             color: white;
@@ -664,6 +709,8 @@
                <div class="company-logo"><img src="img/Klaversof Techsolutions.png" style="width: 100%; height: 100%; object-fit: contain;"></div>
                 <div class="logo">Klaversof Techsolutions</div>
             </div>
+            <button class="menu-toggle" onclick="toggleMenu()">☰</button>
+
             <ul class="nav-links">
                 <li><a href="#home">Home</a></li>
                 <li><a href="#about">About</a></li>
@@ -812,6 +859,11 @@
         document.querySelectorAll('.fade-in').forEach(el => {
             observer.observe(el);
         });
+
+        function toggleMenu() {
+    document.querySelector(".nav-links").classList.toggle("active");
+}
+
 
         // Smooth scroll
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
